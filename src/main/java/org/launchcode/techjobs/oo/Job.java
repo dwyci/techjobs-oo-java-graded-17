@@ -80,26 +80,39 @@ public class Job {
         return id;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Job)) return false;
-//        Job job = (Job) o;
-//        return getId() == job.getId();
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getId());
-//    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
         return id == job.id;
+    }
+
+    @Override
+    public String toString() {
+        String nameValue = (name == null || name.isEmpty()) ? "Data not available" : name;
+        String employerValue = (employer == null || employer.getValue().isEmpty()) ? "Data not available" : employer.getValue();
+        String locationValue = (location == null || location.getValue().isEmpty()) ? "Data not available" : location.getValue();
+        String positionTypeValue = (positionType == null || positionType.getValue().isEmpty()) ? "Data not available" : positionType.getValue();
+        String coreCompetencyValue = (coreCompetency == null || coreCompetency.getValue().isEmpty()) ? "Data not available" : coreCompetency.getValue();
+
+        // Check if the job only contains data for the id field
+        if ("Data not available".equals(nameValue) &&
+                "Data not available".equals(employerValue) &&
+                "Data not available".equals(locationValue) &&
+                "Data not available".equals(positionTypeValue) &&
+                "Data not available".equals(coreCompetencyValue)) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        return System.lineSeparator() +
+                "ID: " + id + System.lineSeparator() +
+                "Name: " + nameValue + System.lineSeparator() +
+                "Employer: " + employerValue + System.lineSeparator() +
+                "Location: " + locationValue + System.lineSeparator() +
+                "Position Type: " + positionTypeValue + System.lineSeparator() +
+                "Core Competency: " + coreCompetencyValue + System.lineSeparator();
+
     }
 
     @Override
