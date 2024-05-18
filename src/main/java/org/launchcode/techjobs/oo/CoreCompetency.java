@@ -38,16 +38,17 @@ public class CoreCompetency {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
         if (this == o) return true;
-        if (!(o instanceof CoreCompetency)) return false;
-        CoreCompetency that = (CoreCompetency) o;
-        return id == that.id;
+        if (!(o instanceof PositionType)) return false;
+        CoreCompetency coreCompetency = (CoreCompetency) o;
+        return getId() == coreCompetency.getId();
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
     // TODO: Use the "Generate" tool to add a getter and setter for the 'value' field but

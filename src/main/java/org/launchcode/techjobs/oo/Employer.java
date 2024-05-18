@@ -2,7 +2,7 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
-public class Employer {
+public class Employer extends JobField {
 
     private int id;
     private static int nextId = 1;
@@ -32,6 +32,7 @@ public class Employer {
         Employer employer = (Employer) o;
         return getId() == employer.getId();
     }
+
 
     @Override
     public int hashCode() {
