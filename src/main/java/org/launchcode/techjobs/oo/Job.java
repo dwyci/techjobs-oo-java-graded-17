@@ -17,11 +17,13 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
+
     public Job() {
         id = nextId;
         nextId++;
     }
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();  // this calls the first constructor to initialize 'id"
         this.name = name;
         this.employer = employer;
         this.location = location;
