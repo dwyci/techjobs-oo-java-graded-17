@@ -23,7 +23,7 @@ public class Job {
         nextId++;
     }
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this();  // this calls the first constructor to initialize 'id"
+        this();  // this calls the first constructor to initialize id
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -93,30 +93,15 @@ public class Job {
 
     @Override
     public String toString() {
-        String nameValue = (name == null || name.isEmpty()) ? "Data not available" : name;
-        String employerValue = (employer == null || employer.getValue().isEmpty()) ? "Data not available" : employer.getValue();
-        String locationValue = (location == null || location.getValue().isEmpty()) ? "Data not available" : location.getValue();
-        String positionTypeValue = (positionType == null || positionType.getValue().isEmpty()) ? "Data not available" : positionType.getValue();
-        String coreCompetencyValue = (coreCompetency == null || coreCompetency.getValue().isEmpty()) ? "Data not available" : coreCompetency.getValue();
-
-        // Check if the job only contains data for the id field
-        if ("Data not available".equals(nameValue) &&
-                "Data not available".equals(employerValue) &&
-                "Data not available".equals(locationValue) &&
-                "Data not available".equals(positionTypeValue) &&
-                "Data not available".equals(coreCompetencyValue)) {
-            return "OOPS! This job does not seem to exist.";
-        }
-
         return System.lineSeparator() +
                 "ID: " + id + System.lineSeparator() +
-                "Name: " + nameValue + System.lineSeparator() +
-                "Employer: " + employerValue + System.lineSeparator() +
-                "Location: " + locationValue + System.lineSeparator() +
-                "Position Type: " + positionTypeValue + System.lineSeparator() +
-                "Core Competency: " + coreCompetencyValue + System.lineSeparator();
-
+                "Name: " + (name != null && !name.isEmpty() ? name : "Data not available") + System.lineSeparator() +
+                "Employer: " + (employer != null && employer.getValue() != null && !employer.getValue().isEmpty() ? employer.getValue() : "Data not available") + System.lineSeparator() +
+                "Location: " + (location != null && location.getValue() != null && !location.getValue().isEmpty() ? location.getValue() : "Data not available") + System.lineSeparator() +
+                "Position Type: " + (positionType != null && positionType.getValue() != null && !positionType.getValue().isEmpty() ? positionType.getValue() : "Data not available") + System.lineSeparator() +
+                "Core Competency: " + (coreCompetency != null && coreCompetency.getValue() != null && !coreCompetency.getValue().isEmpty() ? coreCompetency.getValue() : "Data not available") + System.lineSeparator();
     }
+
 
     @Override
     public int hashCode() {

@@ -36,8 +36,10 @@ public class JobTest {
     @Test
     public void testJobsForEquality() {
 
-        Job job1 = new Job();
-        Job job2 = new Job();
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         assertFalse(job1.getId() == job2.getId());
 
@@ -49,7 +51,7 @@ public class JobTest {
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String jobString = job.toString();
 
-        //checking to see if first character of the jobString is a line separator
+
         // Checking to see if first character of the jobString is a line separator
         assertEquals(System.lineSeparator(), jobString.substring(0, System.lineSeparator().length()));
 
@@ -77,7 +79,32 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField(){
-        Job job = new Job("Product tester", new Employer("ACME"), new Location("Dessert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job = new Job("", new Employer(""), new Location(""),
+                new PositionType(""), new CoreCompetency(""));
+
+        String expectedOutput = System.lineSeparator() +
+                "ID:  " + job.getId() + System.lineSeparator() +
+                "Name:  Data not available" + System.lineSeparator() +
+                "Employer:  Data not available" + System.lineSeparator() +
+                "Location:  Data not available" + System.lineSeparator() +
+                "Position Type:  Data not available" + System.lineSeparator() +
+                "Core Competency:  Data not available" +System.lineSeparator();
+    }
+
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job = new Job("Web Developer", new Employer("LaunchCode"), new Location("StL"),
+                new PositionType("Back-end developer"), new CoreCompetency("Java"));
+
+        // Expected output
+        String expectedOutput = System.lineSeparator() +
+                "ID: " + job.getId() + System.lineSeparator() +
+                "Name: Web Developer" + System.lineSeparator() +
+                "Employer: LaunchCode" + System.lineSeparator() +
+                "Location: StL" + System.lineSeparator() +
+                "Position Type: Back-end developer" + System.lineSeparator() +
+                "Core Competency: Java" + System.lineSeparator();
+
     }
 }
