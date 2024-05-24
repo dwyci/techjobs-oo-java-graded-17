@@ -27,10 +27,10 @@ public class JobTest {
         assertTrue(job1.getCoreCompetency() instanceof CoreCompetency);
 
         assertEquals("Product tester", job1.getName());
-        assertEquals("ACME", job1.getEmployer());
-        assertEquals("Desert", job1.getLocation());
-        assertEquals("Quality control", job1.getPositionType());
-        assertEquals("Persistence", job1.getCoreCompetency());
+        assertEquals("ACME", job1.getEmployer().getValue());
+        assertEquals("Desert", job1.getLocation().getValue());
+        assertEquals("Quality control", job1.getPositionType().getValue());
+        assertEquals("Persistence", job1.getCoreCompetency().getValue());
     }
 
     @Test
@@ -50,8 +50,12 @@ public class JobTest {
         String jobString = job.toString();
 
         //checking to see if first character of the jobString is a line separator
-        assertEquals(System.lineSeparator(), jobString.substring(0, 1));
-        assertEquals(System.lineSeparator(), jobString.substring(jobString.length()));
+        // Checking to see if first character of the jobString is a line separator
+        assertEquals(System.lineSeparator(), jobString.substring(0, System.lineSeparator().length()));
+
+        // Checking to see if the last character of the jobString is a line separator
+        assertEquals(System.lineSeparator(), jobString.substring(jobString.length() - System.lineSeparator().length()));
+
 
 
     }
